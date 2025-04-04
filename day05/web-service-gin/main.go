@@ -32,7 +32,7 @@ func postAlbums(c *gin.Context) {
 
 	// 受信したJSONをnewAlbumにバインド
 	if err := c.BindJSON(&newAlbum); err != nil {
-		return
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
 	// 新しいアルバムをスライスに追加
